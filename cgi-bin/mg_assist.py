@@ -1,20 +1,22 @@
-import cgi
+#!/usr/bin/env python3
+import cgi, cgitb
+cgitb.enable()
 
 class Mg_assist():
-    
     def __init__(self):
         pass
         
-    def send_num(self):
-         
-         print("""<!DOCTYPE HTML>
-         
-            <meta charset="utf-8">
-            <title>Getting results from psychics.</title>
-             Please enter the hidden two-digit number.<br>
-                    <input type="text" name="NUM">
-                    <input type="submit">
-               """)
-       
+    def form_num(self):
+    
+        print('Content-type: text/html')
+        print()
+        print('''
+              <center>
+              <form action="/cgi-bin/form.py">
+              <h1> Please enter the hidden two-digit number.<br></h1>
+              <input type="number" min = 10 max = 99 name="NUM">
+              <input type="submit">
+              </form>
+              </center>''')
        
 
