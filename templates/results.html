@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Web Test Task Easy</title>
+  </head>
+  <body>
+   <br>
+    <br>
+    <br>
+    <h2><center>Загаданное число {{guss_num}}</center></h2> <br>
+    <table align="center" width="100%" >
+            {% for key, val in data_list.items() %}
+                 
+            <tr><td>
+           <center><h2>Экстрасенс  {{ key }} предположил что это число  {{val.num_gu}} , его достоверность составляет  {{val.cred}}</h2>
+            </center>
+            </td></tr>
+           
+           {% endfor %}
+       </table>
+       <table align="center" width="100%" >
+           <tr><center><h2>Загадайте двухзначное число</h2>
+                  <a href = '/test_ext/'><input type = submit value = Загадал>
+                   </a></b></center><br><br><br>       
+           </tr>
+     </table>
+    <br>
+    <br>
+    <br>
+   <h3>
+              Числа загаданные помощником {{guss_nums}}<br>
+              {% for key, val in data_list.items() %} 
+              Числа предложенные экстрасенсом {{ key }}   {{val.list_nums_gu}} <br>
+              {% endfor %} 
+    </h3>
+  </body>
+</html>
