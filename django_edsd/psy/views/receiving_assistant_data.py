@@ -2,14 +2,18 @@
 from django.shortcuts import render, redirect 
 from django.http import HttpResponseRedirect, HttpResponse
 from psy.models.psychic import Psychic
+from django.views import View
+from django.contrib.sessions.backends.db import SessionStore
 import pickle
 
-def receiving_assistant_data(request):
-        
+
+class Receiving_assistant_data(View):
+
         psychic = {}
-        assistent = request.session['assistent']
+        '''
+        assistent = s['assistent']
         N_psy = assistent['N_psy']
-        
+
         psychic['list_psy'] = pickle.loads(request.session['data'])
         #Десериализируем Psychyc
                
@@ -46,3 +50,4 @@ def receiving_assistant_data(request):
         return render(request, 'receiving_assistant_data.html',\
                                             {'data_lst':data_lst})
  
+'''
