@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Web Test Task Easy</title>
+  </head>
+  <body>
+    <br>
+    <br>
+    <br>
+    <table align="center" width="100%" >
+             {% for key, val in data_lst.items %}
+            <tr><td>
+           <center><h2> Экстрасенс  {{ key }} предсказывает, что загаданное число   {{ val }} </h2>
+            </center>
+            </td></tr>
+            {% endfor %}
+     </table>
+     <table align="center" width="100%" >
+           <tr><center> <h2>Введите загаданное Вами двухзначное число!
+           <form action = "" method = "post" > {% csrf_token %}
+           <p><input type = "number" min = 10 max = 99 name = num_test></p>
+           <p><input type = submit value = Отправить></p>
+           </form></h2>  
+           </center>          
+           </tr>
+     </table>
+    </body>
+</html>

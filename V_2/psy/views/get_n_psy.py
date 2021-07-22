@@ -8,12 +8,13 @@ from psy.models.serialization import SerializationData
 
 
 class GetPsy(TemplateView):
-    template_name = 'index.html'
+    #template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
         if 'assistent' in request.session:
             return redirect('/receiving_assistant_data/')
-        return super().get(request, *args, **kwargs)
+        #return super().get(request, *args, **kwargs)
+        return render(request, 'index.html')
 
     def post(self, request):
 

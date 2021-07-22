@@ -12,7 +12,6 @@ class ReceivingAssistantData(TemplateView):
 
         coding = SerializationData()
         assistent, n_psy, psychic = coding.de_serializ(request)
-
         # Десериализируем
 
         data_lst = {}
