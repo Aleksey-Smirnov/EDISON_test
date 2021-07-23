@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from psy.models.serialization import SerializationData
+from psy.models.psychic import Psychic
 
 
 class ReceivingAssistantData(TemplateView):
@@ -14,14 +15,9 @@ class ReceivingAssistantData(TemplateView):
         n_psy, assistent, psychic = coding.de_serializ(request.session['psychic'])
         # Десериализируем
 
-        data_lst = {}
-        for i in range(int(n_psy)):
-            psychic[i].get_proposed_number()
-
-            # Предполагают экстрасенсы
-
-            data_lst[i] = psychic[i].proposed_number
-            # Список - предположенные числа
+        helper = Psychic()
+        data_lst = helper.assumptions_of_psychics(n_psy, psychic)
+        # Получаем предположения экстрасенсов
 
         request.session['psychic'] = coding.serializ(psychic, request.session['psychic'])
         # Сериализируем
@@ -37,9 +33,10 @@ class ReceivingAssistantData(TemplateView):
         if not request.POST.get('num_test'):
             return render(request, 'error.html')
         else:
-            for i in range(int(n_psy)):
-                psychic[i].to_add()
-                print('psychic[i].to_add()', psychic[i].all_proposed_number)
+            helper = Psychic()
+            psychic = helper.save_numbers(n_psy, psychic)
+            # Сохраняем предположенные числа в список
+
             request.session['psychic'] = coding.serializ(psychic, request.session['psychic'])
             # Сериализируем
 
