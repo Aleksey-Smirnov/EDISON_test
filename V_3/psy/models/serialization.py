@@ -30,8 +30,7 @@ class SerializationData:
 
         psychic_list = []
         for i in range(int(self.n_psy)):
-            psychic_list.append(Psychic())
             psy = data[i]
-            psychic_list[i].from_json(psy)
+            psychic_list.append(Psychic.from_json(psy))
 
         return self.n_psy, self.assistent, psychic_list

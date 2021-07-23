@@ -34,12 +34,15 @@ class Psychic:
         }
         return json.dumps(data, ensure_ascii=False, indent=2)
 
-    def from_json(self, data):
+    @staticmethod
+    def from_json(data):
         """Получение данных экстрасенсов"""
         json_data = json.loads(data)
-        self.proposed_number = json_data['proposed_number']
-        self.all_proposed_number = json_data['all_proposed_number']
-        self.credibility = json_data['credibility']
+        psychic = Psychic()
+        psychic.proposed_number = json_data['proposed_number']
+        psychic.all_proposed_number = json_data['all_proposed_number']
+        psychic.credibility = json_data['credibility']
+        return psychic
 
     def assumptions_of_psychics(self, n_psy, data):
         """Работа с предположениями, получение списка предположений"""
