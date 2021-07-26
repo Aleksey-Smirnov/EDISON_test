@@ -1,4 +1,0 @@
-city:
-birth_day:
-birth_month:
-access_token:
