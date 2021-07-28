@@ -6,25 +6,33 @@ class Psychic:
 
     def __init__(self):
 
-        self.proposed_number = None
-        self.all_proposed_number = []
-        self.credibility = 0
+        self.__proposed_number = None
+        self.__all_proposed_number = []
+        self.__credibility = 0
 
     @property
-    def to_add(self):
-        """Сохранение предположенных чисел"""
-        self.all_proposed_number.append(self.proposed_number)
+    def proposed_number(self):
+        return self.__proposed_number
 
-    def get_credibility(self, ass_num):
-        """Вычисление достоверности"""
-        if int(self.proposed_number) == int(ass_num):
-            self.credibility += 1
-        else:
-            self.credibility -= 1
+    @proposed_number.setter
+    def proposed_number(self, value):
+        self.__proposed_number = value
 
-    def get_proposed_number(self):
-        """Вычисление предположенных чисел"""
-        self.proposed_number = random.randint(10, 99)
+    @property
+    def all_proposed_number(self):
+        return self.__all_proposed_number
+
+    @all_proposed_number.setter
+    def all_proposed_number(self, value):
+        self.__all_proposed_number = value
+
+    @property
+    def credibility(self):
+        return self.__credibility
+
+    @credibility.setter
+    def credibility(self, value):
+        self.__credibility = value
 
     def to_json(self):
         """Сохранение данных экстрасенсов"""
@@ -46,11 +54,11 @@ class Psychic:
         return psychic
 
     @classmethod
-    def assumptions_of_psychics(self, n_psy, data):
+    def assumptions_of_psychics(clf, n_psy, data):
         """Работа с предположениями, получение списка предположений"""
         data_lst = {}
         for i in range(int(n_psy)):
-            data[i].get_proposed_number()
+            data[i].proposed_number = random.randint(10, 99)
             # Предполагают экстрасенсы
 
             data_lst[i] = data[i].proposed_number
@@ -61,13 +69,16 @@ class Psychic:
     def save_numbers(clf, n_psy, data):
         """Сохранение списка предположений"""
         for i in range(int(n_psy)):
-            data[i].to_add
+            data[i].all_proposed_number.append(data[i].proposed_number)
 
     @classmethod
     def consider_the_reliability(clf, n_psy, data, assistent_num):
         """Вычисление достоверности всех экстрасенсов"""
         for i in range(int(n_psy)):
-            data[i].get_credibility(assistent_num)
+            if int(data[i].proposed_number) == int(assistent_num):
+                data[i].credibility += 1
+            else:
+                data[i].credibility -= 1
 
     @classmethod
     def get_data_list(clf, n_psy, data):
