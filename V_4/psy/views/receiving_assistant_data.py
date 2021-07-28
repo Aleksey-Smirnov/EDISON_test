@@ -15,7 +15,6 @@ class ReceivingAssistantData(TemplateView):
         n_psy, assistent, psychic = coding.de_serializ(request.session['psychic'])
         # Десериализируем
 
-        helper = Psychic()
         data_lst = Psychic.assumptions_of_psychics(n_psy, psychic)
         # Получаем предположения экстрасенсов
 
